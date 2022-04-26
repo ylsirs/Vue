@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>{{name}}</p>
+    <p k-text="name"></p>
+    <p>{{age}}</p>
+    <p>
+      {{doubleAge}}
+    </p>
+    <input type="text" k-model="name">
+    <button @click="changeName">点击这个按钮</button>
+    <div k-html="html"></div>
+  </div>
+
+  <script src='./compile.js'></script>
+  <script src='./m-vue.js'></script>
+
+  <script>
+    let vm = new MVue({
+      el: '#app',
+      data: {
+        name: "I am test.",
+        age: 12,
+        html: '<button>这是一个按钮</button>'
+      },
+      created () {
+        console.log('------开始啦-------')
+        setTimeout(() => {
+          // console.log(this);
+          this.$data.name = '我是发生改变的内容'
+        }, 2000)
+      },
+      methods: {
+        changeName () {
+          this.$data.name = '因为你的一点，我的值改变了'
+          this.$data.age = 1
+          this.$data.id = 'xx'
+          console.log(this)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
